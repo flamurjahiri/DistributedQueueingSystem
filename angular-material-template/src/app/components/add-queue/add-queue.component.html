@@ -1,0 +1,41 @@
+<h2 style="text-align: center">Add Queue</h2>
+<div class="forma">
+
+  <form id="queueForm">
+    <mat-list>
+      <mat-form-field>
+        <mat-label>
+          City
+        </mat-label>
+        <input matInput [(ngModel)]="city" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </mat-list>
+    <mat-list>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Time</mat-label>
+        <input [(ngModel)]="selectTime" [ngModelOptions]="{standalone: true}" matInput [ngxTimepicker]="time">
+        <ngx-material-timepicker #time></ngx-material-timepicker>
+      </mat-form-field>
+    </mat-list>
+    <mat-list>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Execution Date</mat-label>
+        <input [min]="todayDate" matInput [matDatepicker]="executionDate" [(ngModel)]="selectDate" [ngModelOptions]="{standalone: true}">
+        <mat-datepicker-toggle matSuffix [for]="executionDate">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #executionDate></mat-datepicker>
+      </mat-form-field>
+    </mat-list>
+    <mat-list>
+      <mat-form-field appearance="fill">
+        <mat-label>Task</mat-label>
+        <mat-select (selectionChange)="setTask($event)">
+          <mat-option *ngFor="let task of tasks" [value]="task">{{task}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-list>
+
+    <button style="width: 300px" (click)="onSubmit()" mat-button color="primary">Add</button>
+  </form>
+</div>
